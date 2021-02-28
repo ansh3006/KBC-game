@@ -4,11 +4,37 @@ using namespace std;
 void ask_ques();
 void check_ans(char answer, char right_ans,int);
 void lifeline(char right_ans,int ques_no);
-int lifeline_count=3;
+int lifeline_count=2;
 int cash=100;
 bool double_dip=true;
 bool skip=true;
+string player_name;
 
+void Intro(){
+    cout<<"\n";
+    cout<<"\n";
+    cout<<"------------------------------------------------------------------WELCOME TO THE------------------------------------------------------------------\n";
+    cout<<"-----------------------------------------------------------------------GAME-----------------------------------------------------------------------\n";
+    cout<<"\n";
+    cout<<"\n";
+    cout<<"Enter Your Name: ";
+    cin>>player_name;
+    cout<<"\n";
+    cout<<"\n";
+}
+void Rules(){
+    string yes;
+    cout<<"--------------------Rules & Instructions--------------------\n\n";
+    cout<<"1. There are total 10 Questions in this Game.\n";
+    cout<<"2. There are only two lifelines & if you wanna use it then you have to type l.\n";
+    cout<<"3. You have to type the full lifeline Name inorder to use it.\n";
+    cout<<"4. The Price Amount of every Question will be displayed before the Question.\n";
+    cout<<"5. If your answer is wrong then the amount will be deducted from your Total Price Amount.\n";
+    cout<<"6. Type a, b, c or d to answer any Question.\n\n";
+    cout<<"Please Type 'ok' and press Enter to proceed: ";
+    cin>>yes;
+    cout<<endl;
+}
 
 struct Question{
     string ques;
@@ -22,15 +48,22 @@ struct Question{
 Question q[10];
 
 int main()
-{   char topic ;
-    cout<<"Choose any topic given below of your intrest.\n";
-    cout<<"Enter 'a' for Sports.\n ";
+{   
+    Intro();
+    Rules();
+    char topic ;
+    cout<<"Choose any topic given below of your intrest...\n";
+    cout<<" Enter 'a' for Sports.\n ";
     cout<<"Enter 'b' for Entertainment.\n ";
     cout<<"Enter 'c' for Mythology.\n ";
     cout<<"Enter 'd' for Indian History.\n ";
-    cout<<"Enter 'e' for Science & Tech.\n ";
+    cout<<"Enter 'e' for Science & Technology.\n ";
     cout<<"Enter 'f' for Current Affairs.\n ";
+    cout<<"\n";
+    cout<<"Which Topic do you choose: ";
     cin>>topic;
+    cout<<"\n";
+    cout<<"\n";
     switch(topic){
         case 'a': q[0]={"Which team has never won the IPL tournament?","a:Rajasthan Royals","b:Royal Challengers Bangalore","c:Sunrisers Hyderabad","d:Kolkata Knight Riders",'b',true};
                 q[1]={"In Cricket, which team holds the record of highest run chase in Odi format?","a:Australia","b:South Africa","c:India","d:England",'b',true};
@@ -70,10 +103,10 @@ int main()
                 break;
         case 'd': q[0]={"In which place did Satyagraha first started by Mahatma Gandhi.","a:Delhi","b:Calcutta","c:Baroda","d:Champaran",'d',true};
                 q[1]={"Number of years required to build Tajmahal.","a:22 years","b:26 years","c:18 years","d:12 years",'a',true};
-                q[2]={"The first Indian Governor of independent India.","a:Surindnath","b:Rajgopalachari","c:Rajendra Prasad","d:B.R. Ambedkar",'b',true};
+                q[2]={"The first Indian Governor of independent India.","a:Surindnath","b:Rajgopalachari","c:Rajendra Prasad","d:B.R.Ambedkar",'b',true};
                 q[3]={"What movement is the relationship of ‘ do or die ’?","a:Dandi March","b:Quit India Movement","c:Khilafat Movement","d:The Indian Independence Act",'b',true};
                 q[4]={"Who was the first Viceroy of India?","a:Lord canning","b:Lord wellesley","c:Robert clive","d:William bentick",'a',true};
-                q[5]={"Who was the Chairman of the Drafting Committee of the Constitution of India?","a:Vallabhai Patel","b:Dr. BR Ambedkar","c:Dr. Rajendra Prasad","d:Jawahar Lal Nehru",'b',true};
+                q[5]={"Who was the Chairman of the Drafting Committee of the Constitution of India?","a:Vallabhai Patel","b:Dr.BR Ambedkar","c:Dr.Rajendra Prasad","d:Jawahar Lal Nehru",'b',true};
                 q[6]={"Who was the first Indian to be elected to the British Parliament?","a:Lala Lajpat Rai","b:Bipin Chandra Pal","c:Dadabhai Naoroji","d:Gopala Krishna Gokhale",'c',true};
                 q[7]={"Who was the first prime minister of India who died abroad during an official tour?","a:Lal Bahadur Shastri","b:Morarji Desai","c:Gulzarilal Nanda","d:Charan Singh",'a',true};
                 q[8]={"Jantar Mantar in Delhi is historically important for","a:Public Meetings","b:Hunger Strikes","c:Ancient Sculptures","d:Astronomical Observatory",'d',true};
@@ -122,13 +155,18 @@ void ask_ques(){
         int n=rand()%10;
         if(q[n].avail){
             q[n].avail=false;
-            cout<<"--------This is question number "<<i+1<<" for Rupees "<<(i+1)*cash<<"---------\n";
+            cout<<"--------Question number "<<i+1<<" for Rs."<<(i+1)*cash<<"---------\n";
+            cout<<"\n";
             cout<<"-->"<<q[n].ques<<endl;   //for printing ques 
-            cout<<q[n].opt_a<<"\t\t\t"<<q[n].opt_b<<endl; //for options
-            cout<<q[n].opt_c<<"\t\t\t"<<q[n].opt_d<<endl;
+            cout<<"\n";
+            cout<<q[n].opt_a<<endl<<q[n].opt_b<<endl; //for options
+            cout<<q[n].opt_c<<endl<<q[n].opt_d<<endl;
+            cout<<"\n";
             char choice;
             cout<<"Enter your choice: ";
             cin>>choice;
+            cout<<"\n";
+            cout<<"\n";
             
             i++;
             check_ans(choice , q[n].ans,i);   //using i as question number
@@ -145,81 +183,113 @@ void check_ans(char answer, char right_ans,int ques_no){
     
     if(answer==right_ans){
         cash=ques_no*cash;
-        cout<<"congrats your answer is right\n";
-        cout<<"you have won: "<<cash<<endl;
+        cout<<"Congratulations!!...Your answer is correct.\n";
+        cout<<"You earned Rs."<<cash<<endl;
         cout<<"\n";
         cout<<"\n";
     
+    }
+    else if(answer!=right_ans && answer!='l'){
+        cout<<"Sorry...Your answer is wrong.\n";
+        int amount_deducted=(cash*ques_no)/10;
+        cash=cash-cash*ques_no/10;
+        cout<<"You lose Rs."<<amount_deducted<<endl;
+        cout<<"\n";
+        cout<<"\n";
+        
+        
     }
     else if(answer='l' && lifeline_count!=0){
             lifeline(right_ans,ques_no);
         
     }
     else if (answer='l' && lifeline_count==0){
-        cout<<"you have exhausted all your lifelines please guess any option to continue \n";
+        cout<<"You have exhausted all your lifelines, please guess any option to continue...\n";
+            
+            char choice;
+            cout<<"Enter your choice:";
+            cin>>choice;
+        if(answer==right_ans){
+        cash=ques_no*cash;
+        cout<<"Congratulations!!...Your answer is correct.\n";
+        cout<<"You earned Rs."<<cash<<endl;
+        cout<<"\n";
+        cout<<"\n";
+    
     }
-        
-    else{
-        cout<<"sorry your answer is wrong\n"<<ques_no;
+    else if(answer!=right_ans && answer!='l'){
+        cout<<"Sorry...Your answer is wrong.\n";
         int amount_deducted=(cash*ques_no)/10;
         cash=cash-cash*ques_no/10;
-        cout<<"amount deducted   "<<amount_deducted<<endl;
+        cout<<"You lose Rs."<<amount_deducted<<endl;
         cout<<"\n";
-        cout<<"\n";
-        
-        
+        cout<<"\n";    
     }
+        
+    
         
      
     
 
-}
+}}
 void lifeline(char right_ans, int ques_no){
-    cout<<"available lifelines: ";
+    cout<<"Available lifelines:\n";
     if(double_dip){    //to check availablity of double dip 
         cout<<"double dip\n";
         
     }
     if(skip){   //to check availablity of skip 
-        cout<<("\t\t\tskip\n");
+        cout<<("skip\n");
     }
-    
-   cout<<"enter full name of lifeline you want to use exactly as shown above\n";
+    cout<<endl;
+   cout<<"Enter the full name of lifeline you wanna use exactly as shown above.\n";
    
    string life_line;
-   cin>>life_line;
+   cin>>life_line;  
    if(life_line=="skip"){
-       cout<<"You have successfully  skipped the question  without any deduction\n\n ";
+       cout<<endl;                   //for skip            
+       cout<<"You have successfully skipped the question without any deduction...\n\n ";
        skip=false;
-   } //for skip 
+       lifeline_count--;
+   }  
        
-    else if(life_line=="double dip"){                                   //for double_dip
-        cout<<"you have selected double dip life line so you will be given 2 chances to enter the correct choice\n";
+    else{                     
+        cout<<endl;              //for double_dip
+        cout<<"You have selected double dip lifeline so you will be given 2 chances to enter the correct choice...\n\n";
         double_dip=false;
         lifeline_count--;
-        bool num=false;
         
-        for(int i=1;i<3;i++){
-            char opt;
-            cout<<"enter your"<<i<<"time: ";
-            cin>>opt;
-            if (opt==right_ans){
-                num=true;
-                cout<<endl;
-                break;}}
-            if (num){
-                cout<<"congrats your answer is right\n";
-                cash=ques_no*cash;
-                cout<<"you have won: "<<cash<<endl;
-            }
-            else{
-                cout<<"you both answers are wrong\n";
-                int amount_deducted=(cash*ques_no)/10;
-            cash=cash-cash*ques_no/10;
-            cout<<"amount deducted: "<<amount_deducted<<endl;
-                
-            }
+        int num=0;
+        int k;
+        for(int k=1;k<3;k++){
+            char ch;
+            cout<<"chance "<<k<<" Enter your move: ";
+            cin>>ch;
             
+            if (ch==right_ans){
+                num=1;
+                break;
+            }
+        }
+        if (num==1){
+            cash=ques_no*cash;
+            cout<<endl;
+            cout<<"congrats your answer is right\n";
+            cout<<"you have won: "<<cash<<endl;
+            cout<<"\n";
+            cout<<"\n";
+        }
+        else{
+            cout<<endl;
+            cout<<"sorry your answer is wrong\n";
+            int amount_deducted=(cash*ques_no)/10;
+            cash=cash-cash*ques_no/10;
+            cout<<"amount deducted   "<<amount_deducted<<endl;
+            cout<<"\n";
+            cout<<"\n";
+        }
+        
+        
         
     }
-}  
+}
