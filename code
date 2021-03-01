@@ -20,7 +20,7 @@ void Intro(){
     cout<<"--------------------------------------------------------------------------------------QUIZBOX---------------------------------------------------------------------------------------\n";
     cout<<"\n";
     cout<<"\n";
-    cout<<"Enter Your Name: ";
+    cout<<"Enter Your First Name: ";
     cin>>player_name;
     cin.get();
     cout<<"\n";
@@ -40,9 +40,9 @@ void Rules(){
     cout<<"6. Type a, b, c or d to answer any Question.\n\n";
     cout<<"Hit enter to start the game";
     
-    cin.get();A
+    cin.get();
     
-    system("clear");
+    system("cls");
     
 
     
@@ -88,7 +88,7 @@ int main()
     cout<<"Which Topic do you choose: ";
     cin>>topic;
     cin.get();
-    system("clear");
+    system("cls");
     cout<<"\n";
     cout<<"\n";
     switch(topic){
@@ -183,7 +183,7 @@ void ask_ques(){
     while(i<10){
         
         
-        system("clear");
+        system("cls");
         
         
         int n=rand()%10;
