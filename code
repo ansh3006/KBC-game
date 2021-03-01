@@ -1,11 +1,13 @@
 #include <iostream>
+#include <conio.h>
 using namespace std;
+
 
 void ask_ques();
 void check_ans(char answer, char right_ans,int);
 void lifeline(char right_ans,int ques_no);
 int lifeline_count=2;
-int cash=100;
+int cash=1000;
 bool double_dip=true;
 bool skip=true;
 string player_name;
@@ -20,11 +22,15 @@ void Intro(){
     cout<<"\n";
     cout<<"Enter Your Name: ";
     cin>>player_name;
+    cin.get();
     cout<<"\n";
     cout<<"\n";
 }
 void Rules(){
-    string yes;
+    
+    cout<<"-------Hello "<<player_name<<" !! hit enter for instruction -------- \n";
+    cin.get();
+    
     cout<<"--------------------Rules & Instructions--------------------\n\n";
     cout<<"1. There are total 10 Questions in this Game.\n";
     cout<<"2. There are only two lifelines & if you wanna use it then you have to type l.\n";
@@ -32,8 +38,15 @@ void Rules(){
     cout<<"4. The Price Amount of every Question will be displayed before the Question.\n";
     cout<<"5. If your answer is wrong then the amount will be deducted from your Total Price Amount.\n";
     cout<<"6. Type a, b, c or d to answer any Question.\n\n";
-    cout<<"Please Type 'ok' and press Enter to proceed: ";
-    cin>>yes;
+    cout<<"Hit enter to start the game";
+    
+    cin.get();A
+    
+    system("clear");
+    
+
+    
+    
     cout<<endl;
 }
 void scorecard(){
@@ -45,6 +58,7 @@ void scorecard(){
     cout<<"************************************************************************************************************************************************************************************\n";
     cout<<"\n\n";
     cout<<"Player Name: "<<player_name<<endl<<endl;
+    
 }
 
 struct Question{
@@ -62,6 +76,7 @@ int main()
 {   Intro();
     Rules();
     char topic ;
+    
     cout<<"Choose any topic given below of your intrest...\n";
     cout<<" Enter 'a' for Sports.\n ";
     cout<<"Enter 'b' for Entertainment.\n ";
@@ -72,6 +87,8 @@ int main()
     cout<<"\n";
     cout<<"Which Topic do you choose: ";
     cin>>topic;
+    cin.get();
+    system("clear");
     cout<<"\n";
     cout<<"\n";
     switch(topic){
@@ -166,6 +183,9 @@ void ask_ques(){
     while(i<10){
         
         
+        system("clear");
+        
+        
         int n=rand()%10;
         if(q[n].avail){
             q[n].avail=false;
@@ -179,6 +199,8 @@ void ask_ques(){
             char choice;
             cout<<"Enter your choice: ";
             cin>>choice;
+            cin.get();
+            
             cout<<"\n";
             cout<<"\n";
             
@@ -199,6 +221,9 @@ void check_ans(char answer, char right_ans,int ques_no){
         cash=ques_no*cash;
         cout<<"Congratulations!!...Your answer is correct.\n";
         cout<<"You earned Rs."<<cash<<endl;
+        cout<<"Hit enter for next ques ";
+        cin.get();
+            
         cout<<"\n";
         cout<<"\n";
     
@@ -208,6 +233,9 @@ void check_ans(char answer, char right_ans,int ques_no){
         int amount_deducted=(cash*ques_no)/10;
         cash=cash-cash*ques_no/10;
         cout<<"You lose Rs."<<amount_deducted<<endl;
+        cout<<"correct option is: "<<right_ans<<endl;
+        cout<<"Hit enter for next ques ";
+        cin.get();
         cout<<"\n";
         cout<<"\n";
         
@@ -236,6 +264,7 @@ void check_ans(char answer, char right_ans,int ques_no){
         int amount_deducted=(cash*ques_no)/10;
         cash=cash-cash*ques_no/10;
         cout<<"You lose Rs."<<amount_deducted<<endl;
+        cout<<"correct option is: "<<right_ans<<endl;
         cout<<"\n";
         cout<<"\n";    
     }
@@ -249,7 +278,7 @@ void check_ans(char answer, char right_ans,int ques_no){
 void lifeline(char right_ans, int ques_no){
     cout<<"Available lifelines:\n";
     if(double_dip){    //to check availablity of double dip 
-        cout<<"double dip\n";
+        cout<<"doubledip\n";
         
     }
     if(skip){   //to check availablity of skip 
@@ -265,6 +294,9 @@ void lifeline(char right_ans, int ques_no){
        cout<<"You have successfully skipped the question without any deduction...\n\n ";
        skip=false;
        lifeline_count--;
+       cout<<"Hit enter for next ques ";
+        cin.get();
+        cin.get();
    }  
        
     else{                     
@@ -290,6 +322,9 @@ void lifeline(char right_ans, int ques_no){
             cout<<endl;
             cout<<"Congratulations!!...Your answer is correct.\n";
             cout<<"You earned Rs."<<cash<<endl;
+            cout<<"Hit enter for next ques ";
+            cin.get();
+            cin.get();
             cout<<"\n";
             cout<<"\n";
         }
@@ -299,6 +334,10 @@ void lifeline(char right_ans, int ques_no){
             int amount_deducted=(cash*ques_no)/10;
             cash=cash-cash*ques_no/10;
             cout<<"You lose Rs."<<amount_deducted<<endl;
+            cout<<"correct option is: "<<right_ans<<endl;
+            cout<<"Hit enter for next ques ";
+            cin.get();
+            cin.get();
             cout<<"\n";
             cout<<"\n";
         }
