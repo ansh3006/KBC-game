@@ -20,7 +20,7 @@ void Intro(){
     cout<<"--------------------------------------------------------------------------------------QUIZBOX---------------------------------------------------------------------------------------\n";
     cout<<"\n";
     cout<<"\n";
-    cout<<"Enter Your Name: ";
+    cout<<"Enter Your First Name: ";
     cin>>player_name;
     cin.get();
     cout<<"\n";
@@ -40,7 +40,7 @@ void Rules(){
     cout<<"6. Type a, b, c or d to answer any Question.\n\n";
     cout<<"Hit enter to start the game";
     
-    cin.get();A
+    cin.get();
     
     system("clear");
     
